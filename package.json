@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "npm install node-pre-gyp -g",
+    "start" : "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
     "mongoose": "^8.10.2",
+    "node-pre-gyp": "^0.17.0",
     "wrtc": "^0.4.7"
   }
 }
