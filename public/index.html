@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create User</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="index.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light p-4">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Streaming App</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="viewer.html">Viewer</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Heading -->
+    <div class="container text-center mb-5">
+      <h1 class="display-4 text-primary">Create User</h1>
+    </div>
+
+    <!-- Create User Form -->
+    <div class="container">
+      <form id="create-user-form" class="bg-white p-4 rounded shadow-sm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter your username"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          Create User
+        </button>
+      </form>
+    </div>
+
+    <!-- Start Stream Section -->
+    <div class="container text-center mt-5">
+      <h1 class="h4 mb-4">Start Streaming</h1>
+      <button id="my-button" class="btn btn-success btn-lg mb-3">
+        Start Stream
+      </button>
+      <div class="mt-4">
+        <video autoplay id="video" class="w-100 border rounded"></video>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("create-user-form").onsubmit = async (event) => {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+          const response = await axios.post("/create-user", {
+            username,
+            email,
+            password,
+          });
+          alert(response.data.message);
+        } catch (error) {
+          alert("Error creating user");
+        }
+      };
+    </script>
+
+    <!-- Bootstrap JS (optional but recommended) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
